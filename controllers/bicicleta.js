@@ -1,7 +1,9 @@
 import Bicicleta from "../models/bicicleta.js";
 
 const bicicleta_list = (req, res) => {
-    res.render("bicicletas/index", { bicis: Bicicleta.allBicis });
+    Bicicleta.allBicis().exec((err, bicis) => {
+        res.render("bicicletas/index", { bicis });
+    })
 }
 
 const bicicleta_create_get = (req, res) => {
@@ -17,8 +19,14 @@ const bicicleta_create_post = (req, res) => {
     res.redirect("/bicicletas");
 }
 
+const bicicleta_delete_post = (req, res) => {
+    Bicicleta.removeById(req.body.id);
+    res.redirect("/bicicletas");
+}
+
 export default {
     bicicleta_list,
     bicicleta_create_get,
-    bicicleta_create_post
+    bicicleta_create_post,
+    bicicleta_delete_post
 }
