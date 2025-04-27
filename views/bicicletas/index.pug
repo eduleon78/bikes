@@ -1,0 +1,29 @@
+extends ../layout 
+
+block content 
+  a(href='/bicicletas/create') Nueva Bicicleta
+  br
+  br
+  table.table.table-striped.table-bordered
+    thead
+      tr
+        th(scope='col') #
+        th(scope='col') Marca
+        th(scope='col') Modelo
+        th(scope='col') Color
+        th(scope='col') Precio
+        th(scope='col') Ubicacion   
+        th(scope='col') Vendida
+    tbody
+      each bici in bicis 
+        tr
+          td(scope='row')
+            = bici.id
+          td= bici.marca
+          td= bici.modelo
+          td= bici.color
+          td= bici.precio
+          td= bici.ubicacion
+          td= bici.vendida
+      
+      
